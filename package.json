@@ -1,0 +1,30 @@
+{
+  "name": "@tatumcreative/on-tap",
+  "version": "1.0.0",
+  "description": "Combines a click and touch handler for visualizations",
+  "main": "on-tap.js",
+  "scripts": {
+    "test": "browserify tests/on-tap-test.js | smokestack -b chrome | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TatumCreative/npm-on-top.git"
+  },
+  "keywords": [
+    "touch",
+    "click",
+    "event"
+  ],
+  "author": "Greg Tatum",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TatumCreative/npm-on-top/issues"
+  },
+  "homepage": "https://github.com/TatumCreative/npm-on-top#readme",
+  "devDependencies": {
+    "jquery": "^2.1.4",
+    "smokestack": "^3.4.1",
+    "tap-spec": "^4.1.0",
+    "tape": "^4.2.0"
+  }
+}
