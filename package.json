@@ -1,6 +1,6 @@
 {
   "name": "@tatumcreative/on-tap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Combines a click and touch handler for visualizations",
   "main": "on-tap.js",
   "scripts": {
