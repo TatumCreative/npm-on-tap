@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TatumCreative/npm-on-top.git"
+    "url": "git+https://github.com/TatumCreative/npm-on-tap.git"
   },
   "keywords": [
     "touch",
@@ -18,9 +18,9 @@
   "author": "Greg Tatum",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TatumCreative/npm-on-top/issues"
+    "url": "https://github.com/TatumCreative/npm-on-tap/issues"
   },
-  "homepage": "https://github.com/TatumCreative/npm-on-top#readme",
+  "homepage": "https://github.com/TatumCreative/npm-on-tap#readme",
   "devDependencies": {
     "jquery": "^2.1.4",
     "smokestack": "^3.4.1",
