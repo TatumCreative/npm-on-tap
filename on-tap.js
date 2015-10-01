@@ -29,19 +29,16 @@ function _onTapElement( el, callback, config ) {
 	// Share objects to avoid garbage collection
 	var dispatchedEvent = {}
 	var offset = {}
+	var ratio = config.devicePixelRatio && window.devicePixelRatio > 0 ? window.devicePixelRatio : 1
+	var touchEventName = config.touchend ? "touchend" : "touchstart"
+
+	// Track if a touch was started, and ignore it for click events
 	var touchClientX
 	var touchClientY
 	var timestamp
-	var ratio
-	var touchEventName = config.touchend ? "touchend" : "touchstart"
-	if( config.devicePixelRatio ) {
-		ratio = window.devicePixelRatio > 0 ? window.devicePixelRatio : 1
-	} else {
-		ratio = 1
-	}
 	
 	// Disable click if touch is fired
-	var trackTouchStarted = function(e) {
+	var handleTrackTouchStarted = function(e) {
 		
 		var touch = e.touches[0]
 		
@@ -51,6 +48,13 @@ function _onTapElement( el, callback, config ) {
 		timestamp = Date.now()
 	}
 	
+	// Stop mouse selection on mousedown
+	var handleStopTextSelection = function(e) {
+		
+		e.preventDefault()
+		e.stopPropagation()
+	}
+
 	var handleTouch = function(e) {
 		
 		e.preventDefault()
@@ -86,14 +90,16 @@ function _onTapElement( el, callback, config ) {
 		callback( dispatchedEvent )
 	}
 	
-	el.addEventListener( "touchstart", trackTouchStarted, false)
-	el.addEventListener( touchEventName, handleTouch, false)
-	el.addEventListener( "click", handleClick, false)
+	el.addEventListener( "touchstart",   handleTrackTouchStarted, false )
+	el.addEventListener( "mousedown",    handleStopTextSelection, false )
+	el.addEventListener( touchEventName, handleTouch,             false )
+	el.addEventListener( "click",        handleClick,             false )
 	
 	return function offTap() {
-		el.removeEventListener( "touchstart", trackTouchStarted, false )
-		el.removeEventListener( "click", handleClick, false)
-		el.removeEventListener( touchEventName, handleTouch, false)
+		el.removeEventListener( "touchstart",   handleTrackTouchStarted, false )
+		el.removeEventListener( "mousedown",    handleStopTextSelection, false )
+		el.removeEventListener( "click",        handleClick,             false )
+		el.removeEventListener( touchEventName, handleTouch,             false )
 	}
 }
 
